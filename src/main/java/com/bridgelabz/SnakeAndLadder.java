@@ -1,12 +1,10 @@
 package com.bridgelabz;
 
 import java.util.Random;
-
 /*
  * @author : Nikhil Deshmukh
- * Ensure the player gets to exact winning position 100.
- *  - Note in case the player position go above 100, the player stays in the
- *    same previous position till the player gets the exact number
+ * Report the number of times the dice was played to win the game
+ * and also the position after every die role
  */
 public class SnakeAndLadder {
 
@@ -17,7 +15,7 @@ public class SnakeAndLadder {
 
     // Declaring Instance Variable
     int playerPosition = 0;
-    int newPosition = 0;
+    int diceCount = 0;
 
     // Random Class Object for Generating Random Numbers
     Random randomNo = new Random();
@@ -30,6 +28,9 @@ public class SnakeAndLadder {
     // Method to Roll the die and get no between 1 to 6
     public int rollDie() {
         int dieNo = randomNo.nextInt(6) + 1;
+        // Incrementing the Dice Count on each die roll
+        diceCount++;
+        System.out.println("Dice Count : " + diceCount);
         return dieNo;
     }
 
