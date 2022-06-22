@@ -3,8 +3,8 @@ package com.bridgelabz;
 import java.util.Random;
 /*
  * @author : Nikhil Deshmukh
- * The Player then checks for a Option. They are No Play, Ladder or Snake.
- *  - Use ((RANDOM)) to get the number between 1 to 6
+ * Repeat till the Player reaches the winning position 100.
+ * - Note In case the player position moves below 0, then the player restarts from 0
  */
 public class SnakeAndLadder {
 
@@ -39,11 +39,15 @@ public class SnakeAndLadder {
         switch (optionNo) {
             case IS_NO_PLAY:
                 System.out.println("Player got NO PLAY");
-                newPosition = 0;
                 break;
             case IS_LADDER:
                 System.out.println("Yahoo!!! Player got LADDER");
                 playerPosition += dieNo;
+                // If Player Position greater than 100 then skip the Play
+                if (playerPosition > 100) {
+                    System.out.println("Sorry The Position is Out of Board.");
+                    playerPosition -= dieNo;
+                }
                 break;
             case IS_SNAKE:
                 System.out.println("OOPS!!! Player got SNAKE");
@@ -62,11 +66,14 @@ public class SnakeAndLadder {
         SnakeAndLadder player = new SnakeAndLadder();
         // Showing player position
         player.showPosition();
-        // Showing Die Rolling number
-        int dieNo = player.rollDie();
-        System.out.println("Die Number for Player: " + dieNo);
-        // Player options
-        player.optionPlay(dieNo);
-        player.showPosition();
+        // Iterating upto Player got Position 100
+        while (player.playerPosition != 100) {
+            // Showing Die Rolling number
+            int dieNo = player.rollDie();
+            System.out.println("Die Number for Player: " + dieNo);
+            // Player options
+            player.optionPlay(dieNo);
+            player.showPosition();
+        }
     }
 }
